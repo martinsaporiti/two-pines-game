@@ -16,6 +16,9 @@ func main() {
 }
 
 func play() {
+	if len(os.Args) == 1 {
+		panic("You must provide an input file path...")
+	}
 	arg := os.Args[1]
 	fr := reader.NewFileReader(arg)
 	pr := printer.NewPrinterGame()
