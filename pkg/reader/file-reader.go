@@ -1,5 +1,5 @@
 package reader
 
-type FileReader interface {
+type Reader interface {
 	GetContent() []string
 }

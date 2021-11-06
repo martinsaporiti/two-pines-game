@@ -5,17 +5,17 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/martinsaporiti/two-pines-game/internal/model"
-	"github.com/martinsaporiti/two-pines-game/internal/printer"
-	"github.com/martinsaporiti/two-pines-game/internal/reader"
+	"github.com/martinsaporiti/two-pines-game/pkg/model"
+	"github.com/martinsaporiti/two-pines-game/pkg/printer"
+	"github.com/martinsaporiti/two-pines-game/pkg/reader"
 )
 
 type ControllerImpl struct {
-	reader  reader.FileReader
+	reader  reader.Reader
 	printer printer.Printer
 }
 
-func NewController(reader reader.FileReader, printer printer.Printer) *ControllerImpl {
+func NewController(reader reader.Reader, printer printer.Printer) *ControllerImpl {
 	return &ControllerImpl{
 		reader,
 		printer,
@@ -37,7 +37,7 @@ func (ctrl *ControllerImpl) Play() string {
 }
 
 // Create a game from data inside the file.
-func loadGame(reader reader.FileReader) model.Game {
+func loadGame(reader reader.Reader) model.Game {
 	data, _ := processInputData(reader)
 	game := model.NewGame()
 	for player, knockedDownPinsArr := range data {
@@ -53,7 +53,7 @@ func loadGame(reader reader.FileReader) model.Game {
 }
 
 // Proccess the content of file and returns the knowked down pins for each player.
-func processInputData(reader reader.FileReader) (map[string][]int, error) {
+func processInputData(reader reader.Reader) (map[string][]int, error) {
 	contentFile := reader.GetContent()
 	if len(contentFile) == 0 {
 		log.Panicf("Invalid Input Data. Empty file.")

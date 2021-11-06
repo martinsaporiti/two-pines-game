@@ -5,13 +5,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/martinsaporiti/two-pines-game/internal/controller"
-	"github.com/martinsaporiti/two-pines-game/internal/printer"
-	"github.com/martinsaporiti/two-pines-game/internal/reader"
+	"github.com/martinsaporiti/two-pines-game/pkg/controller"
+	"github.com/martinsaporiti/two-pines-game/pkg/printer"
+	"github.com/martinsaporiti/two-pines-game/pkg/reader"
 )
 
 func main() {
 	defer handleErrors()
+	play()
+}
+
+func play() {
 	arg := os.Args[1]
 	fr := reader.NewFileReader(arg)
 	pr := printer.NewPrinterGame()
@@ -25,6 +29,7 @@ func handleErrors() {
 		log.Println("=> You can not play the game :( Recovered: ", r)
 	}
 }
+
 func check(e error) {
 	if e != nil {
 		panic(e)

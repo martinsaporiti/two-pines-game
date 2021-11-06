@@ -6,7 +6,7 @@ import (
 
 	"strconv"
 
-	"github.com/martinsaporiti/two-pines-game/internal/model"
+	"github.com/martinsaporiti/two-pines-game/pkg/model"
 )
 
 var (
