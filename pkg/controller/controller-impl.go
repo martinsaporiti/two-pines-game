@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -8,6 +9,10 @@ import (
 	"github.com/martinsaporiti/two-pines-game/pkg/model"
 	"github.com/martinsaporiti/two-pines-game/pkg/printer"
 	"github.com/martinsaporiti/two-pines-game/pkg/reader"
+)
+
+const (
+	version string = "v.0.0.1"
 )
 
 type ControllerImpl struct {
@@ -25,6 +30,7 @@ func NewController(reader reader.Reader, printer printer.Printer) *ControllerImp
 // Play the game, loading the data from file, validating the generated model and
 // calculating the score for each player.
 func (ctrl *ControllerImpl) Play() string {
+	fmt.Println("Running Version:", version)
 	game := loadGame(ctrl.reader)
 	correct := game.Validate()
 
