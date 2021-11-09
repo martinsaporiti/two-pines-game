@@ -1,4 +1,6 @@
-# The Two Pine Games
+# The Two Pine Games 
+![example workflow](https://github.com/martinsaporiti/two-pines-game/actions/workflows/go.yml/badge.svg)
+
 This project handle the bowling scores rules described in the specs and [here](https://www.youtube.com/watch?v=aBe71sD8o8c&ab_channel=StephenAnderson). 
 
 It's a command-line application to score a game of ten-pin bowling. You can find the rules [here](https://en.wikipedia.org/wiki/Ten-pin_bowling#Rules_of_play).
