@@ -76,11 +76,11 @@ The soolution has be coded defining the following important interfaces:
                      +-----------+  +----------------------------------------+
 ```
 
-* Controller: 
-* Reader:
-* Printer: 
-* Game: 
-* Player:
+* Controller: Orchestrates the overall flow. It only needs a reader and a printer.
+* Reader: Defines the interface that should implemented to read data to calculate scores.
+* Printer: Defines the interface that should implemented to print the result.
+* Game: Defines the interface to interact with the model.
+* Player: Defines the "api" to interact with the player.
 * Frame: Defines the common api for all kinds of frames. All of them implements Frame's methods.
 * NormalFrame: Defines the methods for a normal frame (try 1 + try 2 < 10).
 * SpeareFrame: Defines the methods for a frame with two tries and score == 10. 
@@ -101,7 +101,10 @@ Maybe are more lines of code, but the solution is more legible and extensible.
 ### Build and Running
 
 ```bash
-$ cd cmd
-$ go build -o two_pines
-$ ./two_pines path_to_file.txt
+$ cd cmd/twopines
+$ go build
+$ ./twopines path_to_file.txt (you can try samples in assets folder)
+
+## Sample:
+$ ./twopines ../../assets/scores.txt
 ```  
