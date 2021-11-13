@@ -1,9 +1,5 @@
 package model
 
-import (
-	"log"
-)
-
 type player struct {
 	name   string
 	score  int
@@ -19,6 +15,7 @@ type Player interface {
 	addTry(knockedDownPins int) bool
 	calculateScore() int
 	validateFrames() bool
+	getScore() int
 	GetName() string
 	GetFrames() []Frame
 	PlayerElement
@@ -57,7 +54,6 @@ func (p *player) calculateScore() int {
 
 	}
 	p.score = totalScore
-	log.Println("Player: ", p.name, " => Total Score:", totalScore)
 	return totalScore
 }
 
@@ -95,6 +91,10 @@ func (p *player) validateFrames() bool {
 		return false
 	}
 	return p.frames[9].(LastFrame).isComplete()
+}
+
+func (p *player) getScore() int {
+	return p.score
 }
 
 func (p *player) AcceptVisitor(playerVisitor PlayerVisitor) {

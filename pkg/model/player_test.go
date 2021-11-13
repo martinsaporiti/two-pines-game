@@ -205,3 +205,15 @@ func TestAcceptPlayerVisitor(t *testing.T) {
 	// then
 	mockPlayerVisitor.AssertCalled(t, "VisitPlayer", player)
 }
+
+func TestGetScore(t *testing.T) {
+	// given
+	player := NewPlayer("player")
+	player.score = 10
+
+	// when
+	score := player.getScore()
+
+	// then
+	assert.Equal(t, 10, score)
+}

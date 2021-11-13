@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -23,8 +24,13 @@ func play() {
 	fr := reader.NewFileReader(arg)
 	pr := printer.NewPrinterGame()
 	ctrl := controller.NewController(fr, pr)
-	fileContent := ctrl.Play()
-	createFile(fileContent)
+	fileContentResult := ctrl.Play()
+	createFile(fileContentResult)
+	fmt.Println("\n ----- \n ")
+	players := ctrl.GetPlayers()
+	for _, p := range players {
+		fmt.Println("Player: ", p, " => ", ctrl.GetPlayerScore(p))
+	}
 }
 
 func handleErrors() {
