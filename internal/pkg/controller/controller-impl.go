@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/martinsaporiti/two-pines-game/pkg/model"
-	"github.com/martinsaporiti/two-pines-game/pkg/printer"
-	"github.com/martinsaporiti/two-pines-game/pkg/reader"
+	"github.com/martinsaporiti/two-pines-game/internal/pkg/model"
+	"github.com/martinsaporiti/two-pines-game/internal/pkg/printer"
+	"github.com/martinsaporiti/two-pines-game/internal/pkg/reader"
 )
 
 const (
