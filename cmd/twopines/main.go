@@ -5,9 +5,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/martinsaporiti/two-pines-game/internal/pkg/controller"
-	"github.com/martinsaporiti/two-pines-game/internal/pkg/printer"
-	"github.com/martinsaporiti/two-pines-game/internal/pkg/reader"
+	"github.com/martinsaporiti/two-pines-game/pkg/controller"
+	"github.com/martinsaporiti/two-pines-game/pkg/printer"
+	"github.com/martinsaporiti/two-pines-game/pkg/reader"
 )
 
 func main() {
