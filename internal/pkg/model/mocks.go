@@ -60,12 +60,6 @@ func (mockPlayer *MockPlayer) validateFrames() bool {
 	return result.(bool)
 }
 
-func (mockPlayer *MockPlayer) getScore() int {
-	args := mockPlayer.Called()
-	result := args.Get(0)
-	return result.(int)
-}
-
 func (mockPlayer *MockPlayer) AcceptVisitor(playerVisitor PlayerVisitor) {
 	mockPlayer.Called(playerVisitor)
 }

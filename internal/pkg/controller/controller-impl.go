@@ -12,10 +12,8 @@ import (
 )
 
 const (
-	version string = "v0.0.2"
+	version string = "v.0.0.1"
 )
-
-var game model.Game
 
 type ControllerImpl struct {
 	reader  reader.Reader
@@ -33,7 +31,7 @@ func NewController(reader reader.Reader, printer printer.Printer) *ControllerImp
 // calculating the score for each player.
 func (ctrl *ControllerImpl) Play() string {
 	fmt.Println("Running Version:", version)
-	game = loadGame(ctrl.reader)
+	game := loadGame(ctrl.reader)
 	correct := game.Validate()
 
 	if !correct {
@@ -42,20 +40,6 @@ func (ctrl *ControllerImpl) Play() string {
 
 	game.CalculateScores()
 	return ctrl.printer.Print(game)
-}
-
-// Return the players names in the game.
-func (ctrl *ControllerImpl) GetPlayers() []string {
-	var playersNames []string
-	for _, p := range game.GetPlayers() {
-		playersNames = append(playersNames, p.GetName())
-	}
-	return playersNames
-}
-
-// Return the score per a given player.
-func (ctrl *ControllerImpl) GetPlayerScore(player string) int {
-	return game.GetPlayerScore(player)
 }
 
 // Create a game from data inside the file.
