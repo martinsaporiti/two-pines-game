@@ -75,6 +75,12 @@ func (mockPlayer *MockPlayer) GetFrames() []Frame {
 	return result.([]Frame)
 }
 
+func (mockPlayer *MockPlayer) getScore() int {
+	args := mockPlayer.Called()
+	result := args.Get(0)
+	return result.(int)
+}
+
 // ------------------------------
 // Mock Frame
 // ------------------------------

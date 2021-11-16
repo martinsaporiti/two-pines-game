@@ -19,6 +19,7 @@ type Player interface {
 	addTry(knockedDownPins int) bool
 	calculateScore() int
 	validateFrames() bool
+	getScore() int
 	GetName() string
 	GetFrames() []Frame
 	PlayerElement
@@ -95,6 +96,10 @@ func (p *player) validateFrames() bool {
 		return false
 	}
 	return p.frames[9].(LastFrame).isComplete()
+}
+
+func (p *player) getScore() int {
+	return p.score
 }
 
 func (p *player) AcceptVisitor(playerVisitor PlayerVisitor) {

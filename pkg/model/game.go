@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-type GameType struct {
+type game struct {
 	players map[string]Player
 }
 
@@ -14,16 +14,18 @@ type Game interface {
 	CalculateScores()
 	Validate() bool
 	GetPlayers() []Player
+	GetPlayerScore(player string) int
 	GameElement
 }
 
-func NewGame() *GameType {
-	return &GameType{
+func NewGame() *game {
+	return &game{
 		players: make(map[string]Player),
 	}
 }
 
-func (g *GameType) GetPlayers() []Player {
+// Return the players
+func (g *game) GetPlayers() []Player {
 	players := make([]Player, 0)
 	for _, player := range g.players {
 		players = append(players, player)
@@ -32,7 +34,7 @@ func (g *GameType) GetPlayers() []Player {
 }
 
 // Add a new try to the player
-func (g *GameType) AddTryToPlayer(player string, knockedDownPins int) bool {
+func (g *game) AddTryToPlayer(player string, knockedDownPins int) bool {
 	if g.players[player] == nil {
 		g.players[player] = NewPlayer(player)
 	}
@@ -40,7 +42,7 @@ func (g *GameType) AddTryToPlayer(player string, knockedDownPins int) bool {
 }
 
 // Calculates the score for the players with goroutines.
-func (g *GameType) CalculateScores() {
+func (g *game) CalculateScores() {
 	var goRoutine sync.WaitGroup
 	for _, player := range g.players {
 		goRoutine.Add(1)
@@ -53,7 +55,7 @@ func (g *GameType) CalculateScores() {
 }
 
 // Validates the model generated per the loaded data.
-func (g *GameType) Validate() bool {
+func (g *game) Validate() bool {
 	var goRoutine sync.WaitGroup
 	ok := true
 	for _, player := range g.players {
@@ -66,6 +68,10 @@ func (g *GameType) Validate() bool {
 	return true
 }
 
-func (g *GameType) Accept(gameVisitor GameVisitor) {
+func (g *game) GetPlayerScore(player string) int {
+	return g.players[player].getScore()
+}
+
+func (g *game) Accept(gameVisitor GameVisitor) {
 	gameVisitor.VisitGame(g)
 }
