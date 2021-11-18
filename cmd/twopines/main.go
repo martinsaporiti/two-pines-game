@@ -23,8 +23,18 @@ func play() {
 	fr := reader.NewFileReader(arg)
 	pr := printer.NewPrinterGame()
 	ctrl := controller.NewController(fr, pr)
-	fileContent := ctrl.Play()
-	createFile(fileContent)
+	resultFileContent := ctrl.Play()
+	createFile(resultFileContent)
+}
+
+func createFile(fileContent string) {
+	t := time.Now()
+	filePrefix := "./" + t.Format("20060102150405")
+	f, err := os.Create(filePrefix + "_result.txt")
+	check(err)
+	defer f.Close()
+	_, err = f.WriteString(fileContent)
+	check(err)
 }
 
 func handleErrors() {
@@ -37,14 +47,4 @@ func check(e error) {
 	if e != nil {
 		panic(e)
 	}
-}
-
-func createFile(fileContent string) {
-	t := time.Now()
-	filePrefix := "./" + t.Format("20060102150405")
-	f, err := os.Create(filePrefix + "_result.txt")
-	check(err)
-	defer f.Close()
-	_, err = f.WriteString(fileContent)
-	check(err)
 }

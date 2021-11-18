@@ -2,7 +2,6 @@ package reader
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -28,7 +27,7 @@ func (fileReader *FileReaderImpl) GetContent() []string {
 	scanner := bufio.NewScanner(file)
 	var content []string
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+		//fmt.Println(scanner.Text())
 		content = append(content, scanner.Text())
 	}
 

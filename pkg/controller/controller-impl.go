@@ -63,7 +63,6 @@ func loadGame(reader reader.Reader) model.Game {
 	data, _ := processInputData(reader)
 	game := model.NewGame()
 	for player, knockedDownPinsArr := range data {
-		log.Println("Player:", player, "=>", "knockedDownPinsArr:", knockedDownPinsArr)
 		for _, knockedDownPins := range knockedDownPinsArr {
 			ok := game.AddTryToPlayer(player, knockedDownPins)
 			if !ok {
@@ -108,8 +107,13 @@ func readKnockedDownPins(s string) int {
 		log.Panicf("You have provided incorrect data to play the game. Each pinfall must be between 0 and 10 or be F")
 	}
 
-	if knoked < 0 || knoked > 10 {
+	if isValidKnokedInputNumber(knoked) {
 		log.Panicf("You have provided incorrect data to play the game. Each pinfall must be between 0 and 10")
 	}
 	return knoked
+}
+
+// knoked input number should be between 0 and 10.
+func isValidKnokedInputNumber(knoked int) bool {
+	return knoked < 0 || knoked > 10
 }

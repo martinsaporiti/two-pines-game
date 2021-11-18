@@ -1,6 +1,6 @@
 package model
 
-type TryType struct {
+type try struct {
 	KnockedDownPins int
 	foul            bool
 	hasValue        bool
@@ -12,8 +12,8 @@ type Try interface {
 	IsFoul() bool
 }
 
-func NewTry(knockedDownPins int) *TryType {
-	newTry := &TryType{
+func NewTry(knockedDownPins int) *try {
+	newTry := &try{
 		KnockedDownPins: knockedDownPins,
 		hasValue:        true,
 	}
@@ -24,14 +24,14 @@ func NewTry(knockedDownPins int) *TryType {
 	return newTry
 }
 
-func (try *TryType) Accept(tryVisitor TryVisitor) {
-	tryVisitor.VisitTry(try)
+func (t *try) Accept(tryVisitor TryVisitor) {
+	tryVisitor.VisitTry(t)
 }
 
-func (try *TryType) GetKnockedDownPins() int {
-	return try.KnockedDownPins
+func (t *try) GetKnockedDownPins() int {
+	return t.KnockedDownPins
 }
 
-func (try *TryType) IsFoul() bool {
-	return try.foul
+func (t *try) IsFoul() bool {
+	return t.foul
 }
